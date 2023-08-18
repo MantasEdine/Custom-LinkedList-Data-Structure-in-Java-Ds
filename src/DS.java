@@ -1,39 +1,58 @@
-
+import java.util.Stack;
 
 public class DS {
 
     public static void main(String[] args) {
-       //Working with Java LinkedList
 
+        // Interview Questions
 
-        // LinkedList list = new LinkedList();
+        // Topic One : Stack
 
-        // list.addLast(5);
-        // list.addLast(4);
-        // list.addLast(3);
-        // list.addLast(2);
-        // list.addLast(1);
-        // System.out.println(list);
-        // System.out.println(list.indexOf(5));
-        // System.out.println(list.contains(5));
-        // System.out.println(list.size());
-        // list.remove(0);
-        // list.addLast(100);
-        // list.addFirst(99);
-        // System.out.println(list);
+        // Question01 : Reversed String
 
-        //Working with custom LinkedList    
+        String str = "abcd";
+        String str2 = reversedString(str);
+        System.out.println(str2);
 
-        LinkedList list = new LinkedList();
+        // Question02 : Balanced Brackets String
 
-        list.addLast(1);
-        list.addLast(1);
-        list.addLast(1);
- 
-    
-    
-
+        String str3 = "((<()>))";
+        boolean isBalanced = balancedStringBrackets(str3);
+        System.out.println(isBalanced ? "Balanced" : "Not balanced");
     }
 
-  
+    public static boolean balancedStringBrackets(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (ch == '(' || ch == '[' || ch == '<') {
+                stack.push(ch);
+            } else if (ch == ')' || ch == ']' || ch == '>') {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char openingBracket = stack.pop();
+                if ((ch == ')' && openingBracket != '(') ||
+                    (ch == ']' && openingBracket != '[') ||
+                    (ch == '>' && openingBracket != '<')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static String reversedString(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
+        }
+
+        StringBuilder reversedElements = new StringBuilder();
+        while (!stack.isEmpty()) {
+            reversedElements.append(stack.pop());
+        }
+
+        return reversedElements.toString();
+    }
 }

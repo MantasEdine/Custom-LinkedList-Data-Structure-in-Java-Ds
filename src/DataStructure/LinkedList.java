@@ -1,3 +1,4 @@
+package DataStructure;
 public class LinkedList {
     private Node first;
     private Node last;
