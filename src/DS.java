@@ -1,99 +1,39 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class DS {
-private final static List<Character> leftBracket = Arrays.asList('(','[','<');
-private final static List<Character> rightBracket = Arrays.asList(')',']','>');
+
     public static void main(String[] args) {
-   
-        // Interview Questions
-
-        // Topic One : Stack
-
-        // Question01 : Reversed String
-
-        // String str = "abcd";
-        // String str2 = reversedString(str);
-        // System.out.println(str2);
-
-        // Question02 : Balanced Brackets String
-
-        String str3 = "(({{<>}}))[a]{}{{<>}}(())";
-        boolean isBalanced = balancedStringBrackets(str3);
-        System.out.println(isBalanced ? "Balanced" : "Not balanced");
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(4);
+        queue.add(6);
+        queue.add(5);
+        queue.add(9);
+        queue.add(8);
+        queue.add(100);
+        queue.add(157);
+        queue.add(784);
+        queue.add(10000);
+        
+        Queue<Integer> reversedQueue = reversingQueue(queue);
+        reversedQueue.remove();
+       System.out.println( reversedQueue.peek());
+        System.out.println(reversedQueue);
     }
 
-    // public static boolean balancedStringBrackets(String str) {
-    //     Stack<Character> stack = new Stack<>();
-    //     for (int i = 0; i < str.length(); i++) {
-    //         char ch = str.charAt(i);
-    //         if (ch == '(' || ch == '[' || ch == '<') {
-    //             stack.push(ch);
-    //         } else if (ch == ')' || ch == ']' || ch == '>') {
-    //             if (stack.isEmpty()) {
-    //                 return false;
-    //             }
-    //             char openingBracket = stack.pop();
-    //             if ((ch == ')' && openingBracket != '(') ||
-    //                 (ch == ']' && openingBracket != '[') ||
-    //                 (ch == '>' && openingBracket != '<')) {
-    //                 return false;
-    //             }
-    //         }
-    //     }
-    //     return stack.isEmpty();
-    // }
-
-    public static boolean balancedStringBrackets(String str) {
-        Stack<Character> stack = new Stack<>();
-        
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-
-            if(isOpeining(ch)) {
-                stack.push(ch);
-     }else if(isClosing(ch)) {
-                if (stack.isEmpty()) {
-                    return false;
-                }
-                char right = stack.pop();
-               if(isMatching(ch, right)){
-                return false;
-               }
-            }
+    public static Queue<Integer> reversingQueue(Queue<Integer> queue) {
+        LinkedList<Integer> test = new LinkedList<>();
+        while (!queue.isEmpty()) {
+            var removedItem = queue.remove();
+            test.addFirst(removedItem);
         }
         
-        return stack.isEmpty();
+        while (!test.isEmpty()) {
+            var removedItem = test.remove();
+            queue.add(removedItem);
+        }
+        
+        return queue;
     }
-
-   private static boolean isOpeining(char ch){
-    
-  return leftBracket.contains(ch) ;
-   }
-   private static boolean isClosing(char ch){
-     return rightBracket.contains(ch);
-   }
-
-
-  private static boolean isMatching(char left , char right){
-    return leftBracket.indexOf(left) == rightBracket.indexOf(right);
-
-  }
-
-
-
-    // public static String reversedString(String str) {
-    //     Stack<Character> stack = new Stack<>();
-    //     for (int i = 0; i < str.length(); i++) {
-    //         stack.push(str.charAt(i));
-    //     }
-
-    //     StringBuilder reversedElements = new StringBuilder();
-    //     while (!stack.isEmpty()) {
-    //         reversedElements.append(stack.pop());
-    //     }
-
-    //     return reversedElements.toString();
-    // }
 }
