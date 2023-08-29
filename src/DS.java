@@ -1,26 +1,23 @@
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
-import DataStructure.ArrayQueue;
+import DataStructure.PriorityQueue;
 
 public class DS {
 
     public static void main(String[] args) {
-      ArrayQueue queue = new ArrayQueue(6);
-      queue.enqueue(1);
-      queue.enqueue(2);
-      queue.enqueue(3);
-      queue.enqueue(4);
+      PriorityQueue<Integer> queue = new PriorityQueue<Integer>(5);
       queue.enqueue(5);
-      queue.enqueue(6);
-      System.out.println(queue);
-      queue.dequeue();
-      queue.dequeue();
-      System.out.println(queue);
-      queue.enqueue(7);
-      queue.enqueue(8);
-      System.out.println(queue);
+      queue.enqueue(4);
+      queue.enqueue(3);
+      queue.enqueue(2);
+      queue.enqueue(9);
+     System.out.println(queue);
+     queue.dequeue();
+     System.out.println(queue.dequeue());
+     System.out.println(queue.peek());
     }
 
     
